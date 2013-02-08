@@ -14,7 +14,7 @@ BIN_DIR=$(dirname $0)
 BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
-LP_DIR=$BUILD_DIR/www/.buildpacks/heroku-buildpack-php
+#LP_DIR=$BUILD_DIR/www/.buildpacks/heroku-buildpack-php
 
 # include .files when moving things around
 shopt -s dotglob
@@ -23,12 +23,12 @@ cd $BUILD_DIR
 
 # move app things to www
 mkdir -p $CACHE_DIR/www
-mv * $CACHE_DIR/www
-mv $CACHE_DIR/www .
+cp * $CACHE_DIR/www
+cp $CACHE_DIR/www .
 
 # keep Procfile
 if [ -f www/Procfile ]; then
-  mv www/Procfile .
+  cp www/Procfile .
 fi
 
 APACHE_URL="https://s3.amazonaws.com/php-lp/apache-$APACHE_VERSION.tar.gz"
@@ -64,4 +64,4 @@ EOF
 chmod +x boot.sh
 
 # clean the cache
-rm -rf $CACHE_DIR
+# rm -rf $CACHE_DIR
