@@ -23,8 +23,8 @@ cd $BUILD_DIR
 
 # move app things to www
 mkdir -p $CACHE_DIR/www
-cp * $CACHE_DIR/www
-cp $CACHE_DIR/www .
+cp -rf * $CACHE_DIR/www
+cp -rf $CACHE_DIR/www .
 
 # keep Procfile
 if [ -f www/Procfile ]; then
@@ -40,8 +40,8 @@ echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-cp $LP_DIR/conf/php.ini php
+cp -f $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+cp -f $LP_DIR/conf/php.ini php
 
 # make php available on bin
 mkdir -p bin
